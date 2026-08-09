@@ -90,6 +90,14 @@ h1 {
   letter-spacing: -0.035em;
 }
 
+/* The one word each heading turns on. Not italic — the emphasis is the colour,
+   and the accent is the same orange the D train is drawn in. */
+h1 em,
+.section-head h2 em {
+  font-style: normal;
+  color: var(--d-train);
+}
+
 .standfirst {
   margin-top: clamp(1.75rem, 4vh, 2.5rem);
   max-width: var(--measure);
