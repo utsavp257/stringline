@@ -15,10 +15,40 @@ const NORTHBOUND = 0;
    same hours squeezed: five hours around the rush instead of eight. Whole day
    is left alone, since asking for the whole day is asking to see all of it. */
 const WINDOWS = {
-  morning:   { label: "Morning",   from: 300,  to: 780,  narrow: [360, 660] },   // 05:00–13:00, 06:00–11:00
-  afternoon: { label: "Afternoon", from: 720,  to: 1200, narrow: [900, 1200] },  // 12:00–20:00, 15:00–20:00
+  morning:   { label: "Morning",   from: 300,  to: 780,  narrow: [420, 660] },   // 05:00–13:00, 07:00–11:00
+  afternoon: { label: "Afternoon", from: 720,  to: 1200, narrow: [960, 1200] },  // 12:00–20:00, 16:00–20:00
   all:       { label: "Whole day", from: 300,  to: 1560 },                       // 05:00–26:00
 };
+
+/* How far a full end-to-end run must travel across the screen before the
+   drawing is worth showing. Below this the trains stand near vertical, slope
+   stops reading as speed, and the chart is decoration. Better to say so than
+   to print something misleading. */
+const MIN_RUN_ADVANCE = 100;
+
+/* Station names are long and a phone has no room for a column of them. These
+   are short enough to fit and still be recognised. */
+const SHORT_NAME = {
+  "Coney Island-Stillwell Av": "Coney Is",
+  "Bay Pkwy": "Bay Pkwy",
+  "36 St": "36 St",
+  "Atlantic Av-Barclays Ctr": "Atlantic",
+  "Grand St": "Grand St",
+  "W 4 St-Wash Sq": "W 4 St",
+  "34 St-Herald Sq": "34 St",
+  "59 St-Columbus Circle": "59 St",
+  "125 St": "125 St",
+  "145 St": "145 St",
+  "161 St-Yankee Stadium": "161 St",
+  "Fordham Rd": "Fordham",
+  "Norwood-205 St": "Norwood",
+};
+
+/* Fewer labels on a phone, or they collide. */
+const NARROW_LABELLED = new Set([
+  "Coney Island-Stillwell Av", "Atlantic Av-Barclays Ctr", "W 4 St-Wash Sq",
+  "34 St-Herald Sq", "125 St", "Fordham Rd", "Norwood-205 St",
+]);
 
 const CSS = getComputedStyle(document.documentElement);
 const colour = (name) => CSS.getPropertyValue(name).trim();
@@ -162,6 +192,7 @@ const plate = {
   readout: document.getElementById("plate-readout"),
   lines: [],
   overlayLines: [],
+  runMinutes: 110,
   progress: 1,
   hover: null,
   geom: null,
@@ -173,17 +204,20 @@ const LABELLED = new Set([
   "125 St", "145 St", "161 St-Yankee Stadium", "Fordham Rd", "Norwood-205 St",
 ]);
 
-function plateGeometry(w, h) {
+function plateGeometry(w, h, windowName = state.window) {
   const narrow = w < 620;
-  const pad = { left: narrow ? 14 : 168, right: 16, top: 18, bottom: 34 };
+  // A phone still gets a station column, just a narrower one with short names.
+  // Endpoint labels floated over the plot were unreadable against the trains.
+  const pad = { left: narrow ? 76 : 168, right: 16, top: 18, bottom: 34 };
   const maxKm = state.stations[state.stations.length - 1].km;
   const plotW = w - pad.left - pad.right;
   const plotH = h - pad.top - pad.bottom;
-  const win = WINDOWS[state.window];
+  const win = WINDOWS[windowName];
   const [from, to] = narrow && win.narrow ? win.narrow : [win.from, win.to];
   const span = to - from;
   return {
-    pad, maxKm, plotW, plotH, narrow, from, to,
+    pad, maxKm, plotW, plotH, narrow, from, to, span,
+    advance: (plotW * plate.runMinutes) / span,
     x: (m) => pad.left + ((m - from) / span) * plotW,
     y: (km) => pad.top + plotH - (km / maxKm) * plotH,
     mAt: (px) => from + ((px - pad.left) / plotW) * span,
@@ -191,10 +225,27 @@ function plateGeometry(w, h) {
   };
 }
 
+/** How long a full run takes on this day, measured rather than assumed. */
+function typicalRunMinutes(lines) {
+  const spans = lines
+    .filter((l) => l.points.length > 20)
+    .map((l) => l.points[l.points.length - 1].m - l.points[0].m)
+    .sort((a, b) => a - b);
+  return spans.length ? spans[Math.floor(spans.length / 2)] : 110;
+}
+
 function drawPlate() {
   const { ctx, w, h } = setupCanvas(plate.canvas);
   const g = plateGeometry(w, h);
   plate.geom = g;
+
+  // Too little width for the slope to mean anything. Say so rather than draw
+  // a wall of vertical lines that looks like data.
+  const legible = g.advance >= MIN_RUN_ADVANCE && g.plotW > 180;
+  plate.canvas.hidden = !legible;
+  document.getElementById("plate-cramped").hidden = legible;
+  updateWindowChips(w, h);
+  if (!legible) return;
 
   ctx.clearRect(0, 0, w, h);
 
@@ -216,24 +267,14 @@ function drawPlate() {
     ctx.stroke();
 
     const isEnd = i === state.fromIdx || i === state.toIdx;
-    if (keyStation && !g.narrow) {
+    const show = g.narrow ? NARROW_LABELLED.has(station.name) : keyStation;
+    if (show) {
       ctx.fillStyle = isEnd ? colour("--d-train") : colour("--ink-3");
       ctx.font = `${isEnd ? "500 " : ""}10px ${CSS.getPropertyValue("--mono")}`;
       ctx.textAlign = "right";
       ctx.textBaseline = "middle";
-      ctx.fillText(station.name, g.pad.left - 10, y);
-    } else if (isEnd && g.narrow) {
-      // No room for a station column on a phone, but the chart is meaningless
-      // without knowing where the commute starts and ends. Backed so the label
-      // stays readable over the trains.
-      ctx.font = `500 10px ${CSS.getPropertyValue("--mono")}`;
-      ctx.textAlign = "left";
-      ctx.textBaseline = "bottom";
-      const width = ctx.measureText(station.name).width;
-      ctx.fillStyle = colour("--plate");
-      ctx.fillRect(g.pad.left + 2, y - 15, width + 6, 13);
-      ctx.fillStyle = colour("--d-train");
-      ctx.fillText(station.name, g.pad.left + 5, y - 4);
+      const name = g.narrow ? (SHORT_NAME[station.name] || station.name) : station.name;
+      ctx.fillText(name, g.pad.left - 8, y);
     }
   });
 
@@ -293,6 +334,16 @@ function drawPlate() {
   document.getElementById("tb-scale").textContent =
     `1 h = ${pxPerHour.toFixed(0)} px · 1 km = ${(g.plotH / g.maxKm).toFixed(1)} px`;
   document.getElementById("tb-hours").textContent = `${clock(g.from)}–${clock(g.to)}`;
+}
+
+/** Grey out any window that would be too squeezed to read at this width. */
+function updateWindowChips(w, h) {
+  document.querySelectorAll("[data-window]").forEach((button) => {
+    const g = plateGeometry(w, h, button.dataset.window);
+    const usable = g.advance >= MIN_RUN_ADVANCE && g.plotW > 180;
+    button.disabled = !usable;
+    button.title = usable ? "" : "Too many hours to fit at this width";
+  });
 }
 
 function animatePlate() {
@@ -571,6 +622,7 @@ async function selectDay(date, animate = true) {
   state.day = state.period.days.find((d) => d.date === date) || null;
   const payload = await getGzJson(`${DATA}/days/${date}.json.gz`);
   plate.lines = polylines(payload);
+  plate.runMinutes = typicalRunMinutes(plate.lines);
   const curve = state.period.curve;
   const bucket = curve.length > 1 ? curve[1].m - curve[0].m : 5;
   state.dayCurve = journeyCurve(

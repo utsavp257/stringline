@@ -716,3 +716,18 @@ h1 em,
 @media (prefers-reduced-motion: reduce) {
   * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
+
+/* Shown in place of the drawing when there is not enough width for it. */
+.plate-cramped {
+  margin: 0;
+  padding: clamp(2rem, 6vw, 3rem) 1rem;
+  max-width: 44ch;
+  color: var(--ink-2);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+
+.chip:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
