@@ -1,0 +1,254 @@
+{
+ "days_used": 436,
+ "first": "2021-09-01",
+ "last": "2025-12-31",
+ "blocks": [
+  {
+   "id": "early",
+   "from": 0,
+   "to": 420
+  },
+  {
+   "id": "am",
+   "from": 420,
+   "to": 600
+  },
+  {
+   "id": "midday",
+   "from": 600,
+   "to": 960
+  },
+  {
+   "id": "pm",
+   "from": 960,
+   "to": 1140
+  },
+  {
+   "id": "evening",
+   "from": 1140,
+   "to": 1440
+  }
+ ],
+ "routes": [
+  {
+   "route": "W",
+   "long_name": "Broadway Local",
+   "km": 31.34,
+   "stations": 44,
+   "kmh": 21.0,
+   "kmh_slow_tenth": 18.5,
+   "end_to_end_minutes": 90,
+   "runs": 75532
+  },
+  {
+   "route": "6",
+   "long_name": "Lexington Avenue Local",
+   "km": 23.27,
+   "stations": 38,
+   "kmh": 22.5,
+   "kmh_slow_tenth": 20.0,
+   "end_to_end_minutes": 62,
+   "runs": 195341
+  },
+  {
+   "route": "R",
+   "long_name": "Broadway Local",
+   "km": 33.55,
+   "stations": 45,
+   "kmh": 22.5,
+   "kmh_slow_tenth": 20.5,
+   "end_to_end_minutes": 89,
+   "runs": 121751
+  },
+  {
+   "route": "2",
+   "long_name": "7 Avenue Express",
+   "km": 39.41,
+   "stations": 61,
+   "kmh": 23.0,
+   "kmh_slow_tenth": 21.0,
+   "end_to_end_minutes": 103,
+   "runs": 143917
+  },
+  {
+   "route": "J",
+   "long_name": "Nassau St Local",
+   "km": 20.81,
+   "stations": 30,
+   "kmh": 23.0,
+   "kmh_slow_tenth": 21.0,
+   "end_to_end_minutes": 54,
+   "runs": 123034
+  },
+  {
+   "route": "M",
+   "long_name": "Queens Blvd Local/6 Av Local",
+   "km": 28.27,
+   "stations": 36,
+   "kmh": 23.5,
+   "kmh_slow_tenth": 20.5,
+   "end_to_end_minutes": 72,
+   "runs": 119469
+  },
+  {
+   "route": "1",
+   "long_name": "Broadway - 7 Avenue Local",
+   "km": 23.37,
+   "stations": 38,
+   "kmh": 24.0,
+   "kmh_slow_tenth": 22.0,
+   "end_to_end_minutes": 58,
+   "runs": 198239
+  },
+  {
+   "route": "3",
+   "long_name": "7 Avenue Express",
+   "km": 27.95,
+   "stations": 34,
+   "kmh": 24.0,
+   "kmh_slow_tenth": 22.0,
+   "end_to_end_minutes": 70,
+   "runs": 121475
+  },
+  {
+   "route": "Z",
+   "long_name": "Nassau St Express",
+   "km": 20.63,
+   "stations": 21,
+   "kmh": 24.0,
+   "kmh_slow_tenth": 22.0,
+   "end_to_end_minutes": 52,
+   "runs": 4875
+  },
+  {
+   "route": "7",
+   "long_name": "Flushing Local",
+   "km": 15.81,
+   "stations": 20,
+   "kmh": 24.5,
+   "kmh_slow_tenth": 21.5,
+   "end_to_end_minutes": 39,
+   "runs": 219962
+  },
+  {
+   "route": "C",
+   "long_name": "8 Avenue Local",
+   "km": 28.93,
+   "stations": 40,
+   "kmh": 25.0,
+   "kmh_slow_tenth": 23.0,
+   "end_to_end_minutes": 69,
+   "runs": 90349
+  },
+  {
+   "route": "D",
+   "long_name": "6 Avenue Express",
+   "km": 39.19,
+   "stations": 41,
+   "kmh": 25.0,
+   "kmh_slow_tenth": 22.5,
+   "end_to_end_minutes": 94,
+   "runs": 151110
+  },
+  {
+   "route": "L",
+   "long_name": "14 St-Canarsie Local",
+   "km": 15.68,
+   "stations": 24,
+   "kmh": 25.0,
+   "kmh_slow_tenth": 21.5,
+   "end_to_end_minutes": 38,
+   "runs": 192907
+  },
+  {
+   "route": "Q",
+   "long_name": "Broadway Express",
+   "km": 27.87,
+   "stations": 34,
+   "kmh": 25.0,
+   "kmh_slow_tenth": 22.0,
+   "end_to_end_minutes": 67,
+   "runs": 139247
+  },
+  {
+   "route": "N",
+   "long_name": "Broadway Local",
+   "km": 33.06,
+   "stations": 45,
+   "kmh": 25.5,
+   "kmh_slow_tenth": 21.5,
+   "end_to_end_minutes": 78,
+   "runs": 120496
+  },
+  {
+   "route": "B",
+   "long_name": "6 Avenue Express",
+   "km": 37.46,
+   "stations": 37,
+   "kmh": 26.0,
+   "kmh_slow_tenth": 23.0,
+   "end_to_end_minutes": 86,
+   "runs": 84570
+  },
+  {
+   "route": "F",
+   "long_name": "Queens Blvd Express/6 Av Local",
+   "km": 42.21,
+   "stations": 55,
+   "kmh": 26.0,
+   "kmh_slow_tenth": 22.5,
+   "end_to_end_minutes": 97,
+   "runs": 164301
+  },
+  {
+   "route": "5",
+   "long_name": "Lexington Avenue Express",
+   "km": 39.62,
+   "stations": 39,
+   "kmh": 26.5,
+   "kmh_slow_tenth": 23.0,
+   "end_to_end_minutes": 90,
+   "runs": 137160
+  },
+  {
+   "route": "G",
+   "long_name": "Brooklyn-Queens Crosstown",
+   "km": 15.73,
+   "stations": 21,
+   "kmh": 26.5,
+   "kmh_slow_tenth": 23.5,
+   "end_to_end_minutes": 36,
+   "runs": 131909
+  },
+  {
+   "route": "4",
+   "long_name": "Lexington Avenue Express",
+   "km": 36.16,
+   "stations": 54,
+   "kmh": 27.0,
+   "kmh_slow_tenth": 22.0,
+   "end_to_end_minutes": 80,
+   "runs": 180352
+  },
+  {
+   "route": "E",
+   "long_name": "8 Avenue Local",
+   "km": 24.55,
+   "stations": 32,
+   "kmh": 29.0,
+   "kmh_slow_tenth": 22.5,
+   "end_to_end_minutes": 51,
+   "runs": 172504
+  },
+  {
+   "route": "A",
+   "long_name": "8 Avenue Express",
+   "km": 50.03,
+   "stations": 59,
+   "kmh": 29.5,
+   "kmh_slow_tenth": 25.0,
+   "end_to_end_minutes": 102,
+   "runs": 151297
+  }
+ ]
+}

@@ -1,0 +1,224 @@
+{
+ "stations": [
+  {
+   "id": "D43N",
+   "name": "Coney Island-Stillwell Av",
+   "km": 0.0
+  },
+  {
+   "id": "B23N",
+   "name": "Bay 50 St",
+   "km": 1.2876
+  },
+  {
+   "id": "B22N",
+   "name": "25 Av",
+   "km": 2.3065
+  },
+  {
+   "id": "B21N",
+   "name": "Bay Pkwy",
+   "km": 3.0511
+  },
+  {
+   "id": "B20N",
+   "name": "20 Av",
+   "km": 3.53
+  },
+  {
+   "id": "B19N",
+   "name": "18 Av",
+   "km": 4.0132
+  },
+  {
+   "id": "B18N",
+   "name": "79 St",
+   "km": 4.6373
+  },
+  {
+   "id": "B17N",
+   "name": "71 St",
+   "km": 5.3301
+  },
+  {
+   "id": "B16N",
+   "name": "62 St",
+   "km": 6.1133
+  },
+  {
+   "id": "B15N",
+   "name": "55 St",
+   "km": 6.678
+  },
+  {
+   "id": "B14N",
+   "name": "50 St",
+   "km": 7.2176
+  },
+  {
+   "id": "B13N",
+   "name": "Fort Hamilton Pkwy",
+   "km": 7.7368
+  },
+  {
+   "id": "B12N",
+   "name": "9 Av",
+   "km": 8.3348
+  },
+  {
+   "id": "R36N",
+   "name": "36 St",
+   "km": 9.5896
+  },
+  {
+   "id": "R35N",
+   "name": "25 St",
+   "km": 10.3333
+  },
+  {
+   "id": "R34N",
+   "name": "Prospect Av",
+   "km": 11.0439
+  },
+  {
+   "id": "R33N",
+   "name": "4 Av-9 St",
+   "km": 11.7605
+  },
+  {
+   "id": "R32N",
+   "name": "Union St",
+   "km": 12.6026
+  },
+  {
+   "id": "R31N",
+   "name": "Atlantic Av-Barclays Ctr",
+   "km": 13.3964
+  },
+  {
+   "id": "R30N",
+   "name": "DeKalb Av",
+   "km": 14.2119
+  },
+  {
+   "id": "D22N",
+   "name": "Grand St",
+   "km": 17.4448
+  },
+  {
+   "id": "D21N",
+   "name": "Broadway-Lafayette St",
+   "km": 18.2534
+  },
+  {
+   "id": "D20N",
+   "name": "W 4 St-Wash Sq",
+   "km": 19.1157
+  },
+  {
+   "id": "D17N",
+   "name": "34 St-Herald Sq",
+   "km": 21.3237
+  },
+  {
+   "id": "D16N",
+   "name": "42 St-Bryant Pk",
+   "km": 21.8945
+  },
+  {
+   "id": "D15N",
+   "name": "47-50 Sts-Rockefeller Ctr",
+   "km": 22.4587
+  },
+  {
+   "id": "D14N",
+   "name": "7 Av",
+   "km": 22.9263
+  },
+  {
+   "id": "A24N",
+   "name": "59 St-Columbus Circle",
+   "km": 23.5306
+  },
+  {
+   "id": "A15N",
+   "name": "125 St",
+   "km": 28.8959
+  },
+  {
+   "id": "D13N",
+   "name": "145 St",
+   "km": 30.5631
+  },
+  {
+   "id": "D12N",
+   "name": "155 St",
+   "km": 31.3439
+  },
+  {
+   "id": "D11N",
+   "name": "161 St-Yankee Stadium",
+   "km": 32.4292
+  },
+  {
+   "id": "D10N",
+   "name": "167 St",
+   "km": 33.32
+  },
+  {
+   "id": "D09N",
+   "name": "170 St",
+   "km": 34.0674
+  },
+  {
+   "id": "D08N",
+   "name": "174-175 Sts",
+   "km": 34.8503
+  },
+  {
+   "id": "D07N",
+   "name": "Tremont Av",
+   "km": 35.4999
+  },
+  {
+   "id": "D06N",
+   "name": "182-183 Sts",
+   "km": 36.2359
+  },
+  {
+   "id": "D05N",
+   "name": "Fordham Rd",
+   "km": 36.8668
+  },
+  {
+   "id": "D04N",
+   "name": "Kingsbridge Rd",
+   "km": 37.5923
+  },
+  {
+   "id": "D03N",
+   "name": "Bedford Park Blvd",
+   "km": 38.4712
+  },
+  {
+   "id": "D01N",
+   "name": "Norwood-205 St",
+   "km": 39.1891
+  }
+ ],
+ "segment": {
+  "from": "D17N",
+  "to": "D05N",
+  "from_name": "34 St-Herald Sq",
+  "to_name": "Fordham Rd",
+  "km": 15.54,
+  "min_ride_minutes": 15.54
+ },
+ "overlay_routes": [
+  "B",
+  "F",
+  "M",
+  "A",
+  "C"
+ ]
+}

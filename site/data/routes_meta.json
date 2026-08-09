@@ -1,0 +1,222 @@
+{
+ "1": {
+  "long_name": "Broadway - 7 Avenue Local",
+  "colour": "#D82233",
+  "km": 23.37,
+  "stations": 38,
+  "terminals": [
+   "South Ferry",
+   "Van Cortlandt Park-242 St"
+  ]
+ },
+ "2": {
+  "long_name": "7 Avenue Express",
+  "colour": "#D82233",
+  "km": 39.41,
+  "stations": 61,
+  "terminals": [
+   "Flatbush Av-Brooklyn College",
+   "Wakefield-241 St"
+  ]
+ },
+ "3": {
+  "long_name": "7 Avenue Express",
+  "colour": "#D82233",
+  "km": 27.95,
+  "stations": 34,
+  "terminals": [
+   "New Lots Av",
+   "Harlem-148 St"
+  ]
+ },
+ "4": {
+  "long_name": "Lexington Avenue Express",
+  "colour": "#009952",
+  "km": 36.16,
+  "stations": 54,
+  "terminals": [
+   "New Lots Av",
+   "Woodlawn"
+  ]
+ },
+ "5": {
+  "long_name": "Lexington Avenue Express",
+  "colour": "#009952",
+  "km": 39.62,
+  "stations": 39,
+  "terminals": [
+   "New Lots Av",
+   "Eastchester-Dyre Av"
+  ]
+ },
+ "6": {
+  "long_name": "Lexington Avenue Local",
+  "colour": "#009952",
+  "km": 23.27,
+  "stations": 38,
+  "terminals": [
+   "Brooklyn Bridge-City Hall",
+   "Pelham Bay Park"
+  ]
+ },
+ "7": {
+  "long_name": "Flushing Local",
+  "colour": "#9A38A1",
+  "km": 15.81,
+  "stations": 20,
+  "terminals": [
+   "34 St-Hudson Yards",
+   "Flushing-Main St"
+  ]
+ },
+ "A": {
+  "long_name": "8 Avenue Express",
+  "colour": "#0062CF",
+  "km": 50.03,
+  "stations": 59,
+  "terminals": [
+   "Far Rockaway-Mott Av",
+   "Inwood-207 St"
+  ]
+ },
+ "B": {
+  "long_name": "6 Avenue Express",
+  "colour": "#EB6800",
+  "km": 37.46,
+  "stations": 37,
+  "terminals": [
+   "Brighton Beach",
+   "Bedford Park Blvd"
+  ]
+ },
+ "C": {
+  "long_name": "8 Avenue Local",
+  "colour": "#0062CF",
+  "km": 28.93,
+  "stations": 40,
+  "terminals": [
+   "Euclid Av",
+   "168 St"
+  ]
+ },
+ "D": {
+  "long_name": "6 Avenue Express",
+  "colour": "#EB6800",
+  "km": 39.19,
+  "stations": 41,
+  "terminals": [
+   "Coney Island-Stillwell Av",
+   "Norwood-205 St"
+  ]
+ },
+ "E": {
+  "long_name": "8 Avenue Local",
+  "colour": "#0062CF",
+  "km": 24.55,
+  "stations": 32,
+  "terminals": [
+   "World Trade Center",
+   "Jamaica Center-Parsons/Archer"
+  ]
+ },
+ "F": {
+  "long_name": "Queens Blvd Express/6 Av Local",
+  "colour": "#EB6800",
+  "km": 42.21,
+  "stations": 55,
+  "terminals": [
+   "Coney Island-Stillwell Av",
+   "Jamaica-179 St"
+  ]
+ },
+ "G": {
+  "long_name": "Brooklyn-Queens Crosstown",
+  "colour": "#799534",
+  "km": 15.73,
+  "stations": 21,
+  "terminals": [
+   "Church Av",
+   "Court Sq"
+  ]
+ },
+ "J": {
+  "long_name": "Nassau St Local",
+  "colour": "#8E5C33",
+  "km": 20.81,
+  "stations": 30,
+  "terminals": [
+   "Broad St",
+   "Jamaica Center-Parsons/Archer"
+  ]
+ },
+ "L": {
+  "long_name": "14 St-Canarsie Local",
+  "colour": "#7C858C",
+  "km": 15.68,
+  "stations": 24,
+  "terminals": [
+   "Canarsie-Rockaway Pkwy",
+   "8 Av"
+  ]
+ },
+ "M": {
+  "long_name": "Queens Blvd Local/6 Av Local",
+  "colour": "#EB6800",
+  "km": 28.27,
+  "stations": 36,
+  "terminals": [
+   "Middle Village-Metropolitan Av",
+   "Forest Hills-71 Av"
+  ]
+ },
+ "N": {
+  "long_name": "Broadway Local",
+  "colour": "#F6BC26",
+  "km": 33.06,
+  "stations": 45,
+  "terminals": [
+   "Coney Island-Stillwell Av",
+   "Astoria-Ditmars Blvd"
+  ]
+ },
+ "Q": {
+  "long_name": "Broadway Express",
+  "colour": "#F6BC26",
+  "km": 27.87,
+  "stations": 34,
+  "terminals": [
+   "Coney Island-Stillwell Av",
+   "96 St"
+  ]
+ },
+ "R": {
+  "long_name": "Broadway Local",
+  "colour": "#F6BC26",
+  "km": 33.55,
+  "stations": 45,
+  "terminals": [
+   "Bay Ridge-95 St",
+   "Forest Hills-71 Av"
+  ]
+ },
+ "W": {
+  "long_name": "Broadway Local",
+  "colour": "#F6BC26",
+  "km": 31.34,
+  "stations": 44,
+  "terminals": [
+   "86 St",
+   "Astoria-Ditmars Blvd"
+  ]
+ },
+ "Z": {
+  "long_name": "Nassau St Express",
+  "colour": "#8E5C33",
+  "km": 20.63,
+  "stations": 21,
+  "terminals": [
+   "Broad St",
+   "Jamaica Center-Parsons/Archer"
+  ]
+ }
+}

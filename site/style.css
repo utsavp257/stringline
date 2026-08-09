@@ -1,0 +1,638 @@
+/* The D train, drawn as time.
+   Cyanotype ground, Helvetica (the subway's own typeface), mono for annotation.
+   One warm accent: MTA orange, stepped for the dark surface. */
+
+:root {
+  --ground:        #0b1e33;
+  --plate:         #0d2540;
+  --plate-edge:    #1d3f61;
+  --grid:          #16344f;
+  --grid-strong:   #1e4467;
+
+  --ink:           #eaf2fa;
+  --ink-2:         #9db4ca;
+  --ink-3:         #61809d;
+
+  --d-train:       #f25c12;
+  --d-train-dim:   rgba(242, 92, 18, 0.34);
+  --context:       #4a6c8d;
+
+  --band-outer:    #2a5680;
+  --band-inner:    #3d77a6;
+  --band-median:   #9bcff0;
+
+  --display: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+
+  --measure: 68ch;
+  --gutter: clamp(1.25rem, 4vw, 4rem);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--display);
+  font-size: clamp(1rem, 0.95rem + 0.2vw, 1.0625rem);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+a { color: var(--band-median); text-underline-offset: 0.2em; }
+a:hover { color: var(--ink); }
+
+:focus-visible {
+  outline: 2px solid var(--d-train);
+  outline-offset: 3px;
+}
+
+/* ── masthead ─────────────────────────────────────────────── */
+
+.masthead {
+  padding: clamp(3rem, 9vh, 7rem) var(--gutter) clamp(2rem, 5vh, 3.5rem);
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.eyebrow {
+  margin: 0 0 clamp(1.5rem, 4vh, 2.75rem);
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  display: flex;
+  align-items: center;
+  gap: 0.75em;
+  flex-wrap: wrap;
+}
+
+.eyebrow .rule {
+  width: 2.5rem; height: 1px;
+  background: var(--grid-strong);
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2.75rem, 9vw, 7.5rem);
+  line-height: 0.92;
+  font-weight: 700;
+  letter-spacing: -0.035em;
+}
+
+.standfirst {
+  margin-top: clamp(1.75rem, 4vh, 2.5rem);
+  max-width: var(--measure);
+  color: var(--ink-2);
+}
+
+.standfirst p { margin: 0 0 0.85em; }
+.standfirst p:last-child { margin-bottom: 0; color: var(--ink); }
+
+/* ── shared section furniture ─────────────────────────────── */
+
+.ranking-section,
+.checker-section,
+.mine {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: clamp(3rem, 8vh, 5rem) var(--gutter) 0;
+}
+
+.ranking-section,
+.checker-section { border-top: 1px solid var(--grid); padding-bottom: clamp(2rem, 5vh, 3rem); }
+
+.section-head { max-width: var(--measure); margin-bottom: clamp(2rem, 5vh, 3rem); }
+
+.section-head h2 {
+  margin: 0 0 1rem;
+  font-size: clamp(1.75rem, 4vw, 3rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+}
+
+.section-head p { margin: 0; color: var(--ink-2); }
+
+.footnote {
+  margin: 1.5rem 0 0;
+  max-width: var(--measure);
+  font-size: 0.8125rem;
+  color: var(--ink-3);
+}
+
+/* the route bullet, the one piece of subway vernacular worth borrowing */
+.bullet {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.7rem;
+  height: 1.7rem;
+  border-radius: 50%;
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.8125rem;
+  line-height: 1;
+  flex: 0 0 auto;
+}
+
+/* ── facts ────────────────────────────────────────────────── */
+
+.facts {
+  display: grid;
+  gap: 1px;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  background: var(--grid);
+  border: 1px solid var(--grid);
+  margin-bottom: clamp(2rem, 5vh, 3rem);
+}
+
+.fact { background: var(--plate); padding: 1.25rem; }
+
+.fact-value {
+  margin: 0 0 0.5rem;
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--d-train);
+  font-variant-numeric: tabular-nums;
+}
+
+.fact-label {
+  margin: 0;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--ink-2);
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-start;
+}
+
+.fact-label .bullet { width: 1.4rem; height: 1.4rem; font-size: 0.6875rem; margin-top: 0.1rem; }
+
+/* ── ranking ──────────────────────────────────────────────── */
+
+.ranking { list-style: none; margin: 0; padding: 0; }
+
+.rank-row {
+  display: grid;
+  grid-template-columns: 1.7rem minmax(0, 17rem) minmax(0, 1fr) 5rem 9rem;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid var(--grid);
+}
+
+.rank-name { color: var(--ink-2); font-size: 0.8125rem; }
+
+.rank-bar {
+  position: relative;
+  height: 0.7rem;
+  background: var(--grid);
+}
+
+.rank-fill { position: absolute; inset: 0 auto 0 0; background: var(--band-inner); }
+
+.rank-slow {
+  position: absolute;
+  top: -2px;
+  bottom: -2px;
+  width: 2px;
+  background: var(--band-median);
+}
+
+.rank-value {
+  text-align: right;
+  font-family: var(--mono);
+  font-size: 0.875rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.rank-value .unit { color: var(--ink-3); font-size: 0.6875rem; }
+
+.rank-note {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  color: var(--ink-3);
+  text-align: right;
+}
+
+/* ── checker ──────────────────────────────────────────────── */
+
+.bullets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.bullet-button {
+  border: 2px solid transparent;
+  cursor: pointer;
+  font-family: inherit;
+  padding: 0;
+  width: 2.1rem;
+  height: 2.1rem;
+  opacity: 0.55;
+  transition: opacity 0.12s, border-color 0.12s, transform 0.12s;
+}
+
+.bullet-button:hover { opacity: 1; transform: translateY(-2px); }
+.bullet-button[aria-pressed="true"] { opacity: 1; border-color: var(--ink); }
+
+.picker {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  margin-bottom: 1.5rem;
+}
+
+.field { display: flex; flex-direction: column; gap: 0.35rem; }
+
+.field span {
+  font-family: var(--mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.field select {
+  font: inherit;
+  font-size: 0.9375rem;
+  color: var(--ink);
+  background: var(--plate);
+  border: 1px solid var(--plate-edge);
+  padding: 0.55rem 0.7rem;
+  border-radius: 0;
+  width: 100%;
+}
+
+.field select:disabled { color: var(--ink-3); }
+
+.answer {
+  background: var(--plate);
+  border: 1px solid var(--plate-edge);
+  border-left: 2px solid var(--d-train);
+  padding: clamp(1.25rem, 3vw, 2rem);
+  min-height: 11rem;
+}
+
+.answer-empty { margin: 0; color: var(--ink-3); }
+
+.answer-grid {
+  display: grid;
+  gap: clamp(1.25rem, 3vw, 2.5rem);
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  align-items: start;
+}
+
+@media (max-width: 760px) {
+  .answer-grid { grid-template-columns: 1fr; }
+}
+
+.answer-line {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0 0 1rem;
+  font-size: 0.9375rem;
+  color: var(--ink-2);
+  flex-wrap: wrap;
+}
+
+.answer-line .arrow { color: var(--ink-3); }
+
+.answer-big {
+  margin: 0 0 0.6rem;
+  font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.answer-big b { color: var(--d-train); font-variant-numeric: tabular-nums; }
+
+.answer-sub { margin: 0; color: var(--ink-2); max-width: 46ch; }
+.answer-sub b { color: var(--ink); font-weight: 500; }
+
+.answer-facts {
+  margin: 0;
+  display: grid;
+  gap: 1px;
+  background: var(--grid);
+  border: 1px solid var(--grid);
+}
+
+.answer-facts > div {
+  background: var(--plate);
+  padding: 0.5rem 0.75rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.answer-facts dt {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-3);
+}
+
+.answer-facts dd {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── the plate ────────────────────────────────────────────── */
+
+.plate-wrap {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--gutter) clamp(3rem, 8vh, 5rem);
+}
+
+.plate {
+  position: relative;
+  background: var(--plate);
+  border: 1px solid var(--plate-edge);
+  padding: 0.75rem;
+}
+
+.plate canvas {
+  display: block;
+  width: 100%;
+  height: clamp(420px, 62vh, 760px);
+  touch-action: none;
+}
+
+.readout {
+  position: absolute;
+  top: 1.25rem; left: 1.25rem;
+  background: rgba(11, 30, 51, 0.93);
+  border: 1px solid var(--plate-edge);
+  border-left: 2px solid var(--d-train);
+  padding: 0.5rem 0.75rem;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  line-height: 1.5;
+  pointer-events: none;
+  max-width: 22rem;
+}
+
+.readout-train { display: block; color: var(--ink); }
+.readout-detail { display: block; color: var(--ink-2); }
+
+/* The drafting title block — the disclosure surface.
+   Real drawings run it along the bottom edge, which is also the one place it
+   covers no data. */
+.titleblock {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  margin-top: 0.75rem;
+  border: 1px solid var(--plate-edge);
+  background: var(--ground);
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  line-height: 1.4;
+}
+
+.tb-row {
+  display: flex;
+  gap: 0.6rem;
+  align-items: baseline;
+  padding: 0.4rem 0.75rem;
+  border-right: 1px solid var(--grid);
+  min-width: 0;
+}
+.tb-row:last-child { border-right: 0; }
+
+.tb-title { background: var(--grid); }
+
+.tb-key {
+  color: var(--ink-3);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+  flex: 0 0 auto;
+}
+.tb-val { color: var(--ink); min-width: 0; }
+
+/* ── controls ─────────────────────────────────────────────── */
+
+.plate-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.control-group { display: flex; gap: 0.5rem; }
+
+.chip {
+  font: inherit;
+  font-size: 0.8125rem;
+  color: var(--ink-2);
+  background: transparent;
+  border: 1px solid var(--plate-edge);
+  padding: 0.4rem 0.85rem;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+}
+
+.chip:hover { color: var(--ink); border-color: var(--ink-3); }
+
+.chip[aria-pressed="true"] {
+  color: var(--ground);
+  background: var(--d-train);
+  border-color: var(--d-train);
+}
+
+.toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.8125rem;
+  color: var(--ink-2);
+  cursor: pointer;
+}
+
+.toggle input { accent-color: var(--d-train); width: 1rem; height: 1rem; }
+.toggle:hover { color: var(--ink); }
+
+/* ── day strip ────────────────────────────────────────────── */
+
+.daystrip-figure { margin: clamp(2rem, 5vh, 3rem) 0 0; }
+
+.daystrip-figure figcaption {
+  font-size: 0.8125rem;
+  color: var(--ink-3);
+  max-width: var(--measure);
+  margin-bottom: 0.85rem;
+}
+
+.daystrip {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 72px;
+}
+
+.daybar {
+  flex: 1 1 0;
+  min-width: 2px;
+  padding: 0;
+  border: 0;
+  background: var(--band-outer);
+  cursor: pointer;
+  transition: background 0.12s;
+}
+
+.daybar:hover { background: var(--band-median); }
+.daybar[aria-pressed="true"] { background: var(--d-train); }
+.daybar.reduced { background: var(--grid-strong); }
+
+/* ── the question ─────────────────────────────────────────── */
+
+.question {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: clamp(3rem, 8vh, 5rem) var(--gutter);
+  border-top: 1px solid var(--grid);
+}
+
+.question-grid {
+  display: grid;
+  gap: clamp(1.5rem, 4vw, 4rem);
+  align-items: start;
+  margin-bottom: clamp(2rem, 5vh, 3rem);
+}
+
+@media (min-width: 900px) {
+  .question-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+}
+
+.question-head { max-width: var(--measure); }
+
+.question h2 {
+  margin: 0 0 1rem;
+  font-size: clamp(1.75rem, 4vw, 3rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+}
+
+.question-head p { margin: 0; color: var(--ink-2); }
+.question-head strong { color: var(--ink); font-weight: 500; }
+
+.verdict {
+  margin: 0;
+  font-size: clamp(1.125rem, 2.2vw, 1.75rem);
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+  max-width: 30ch;
+  min-height: 4.5em;
+}
+
+.verdict b {
+  font-weight: 700;
+  color: var(--d-train);
+  font-variant-numeric: tabular-nums;
+}
+
+.verdict .muted { color: var(--ink-3); }
+
+.bands {
+  background: var(--plate);
+  border: 1px solid var(--plate-edge);
+  padding: 0.75rem;
+}
+
+.bands canvas {
+  display: block;
+  width: 100%;
+  height: clamp(260px, 38vh, 420px);
+  touch-action: none;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  margin-top: 0.9rem;
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  color: var(--ink-3);
+}
+
+.key { display: flex; align-items: center; gap: 0.5rem; }
+
+.sw { width: 1.4rem; height: 0.55rem; display: inline-block; }
+.sw-outer  { background: var(--band-outer); }
+.sw-inner  { background: var(--band-inner); }
+.sw-median { background: var(--band-median); height: 2px; }
+.sw-day    { background: var(--d-train); height: 2px; }
+
+.terms {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: clamp(1.75rem, 4vh, 2.5rem);
+}
+
+/* ── colophon ─────────────────────────────────────────────── */
+
+.colophon {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: clamp(2.5rem, 6vh, 4rem) var(--gutter) clamp(4rem, 10vh, 6rem);
+  border-top: 1px solid var(--grid);
+  display: grid;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+  font-size: 0.8125rem;
+  color: var(--ink-2);
+  line-height: 1.6;
+}
+
+.colophon h3 {
+  margin: 0 0 0.5rem;
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+
+.colophon p { margin: 0; }
+
+#coverage { color: var(--ink-2); }
+
+/* ── narrow ───────────────────────────────────────────────── */
+
+@media (max-width: 720px) {
+  .plate canvas { height: clamp(380px, 62vh, 560px); }
+  .plate-controls { align-items: flex-start; flex-direction: column; }
+  .titleblock { grid-template-columns: 1fr; }
+  .tb-row { border-right: 0; border-bottom: 1px solid var(--grid); }
+  .tb-row:last-child { border-bottom: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}

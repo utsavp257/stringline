@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The slowest train in New York</title>
+<meta name="description" content="Every subway line ranked by how fast it actually moves, a checker for your own commute, and one commute drawn as a time-space diagram — from five autumns of observed train movements.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="masthead">
+  <p class="eyebrow">Observed movements <span class="rule"></span> <span id="service-count">every service</span> <span class="rule"></span> New York City</p>
+  <h1>The slowest train<br>in New York.</h1>
+  <div class="standfirst">
+    <p>Not the one that feels slowest. The one that is — measured from where every
+    train actually was, minute by minute, across five autumns.</p>
+    <p>Then you can check your own commute, and I will show you mine.</p>
+  </div>
+</header>
+
+<section class="ranking-section" aria-labelledby="ranking-heading">
+  <div class="section-head">
+    <h2 id="ranking-heading">Every line, by how fast it really moves</h2>
+    <p>Speed across every run a service made, short turns included — because on some
+    lines short turns are most of the service. The pale mark is the slowest tenth of
+    runs, so the gap between the two is how much worse a bad trip gets than a normal one.</p>
+  </div>
+
+  <div class="facts" id="facts"></div>
+
+  <ol class="ranking" id="ranking"></ol>
+
+  <p class="footnote">Distances are measured straight-line between stations, so they fall
+  a little short of real track length and every speed here reads slightly low. The bias
+  applies to <span id="footnote-count">every service</span> equally, so the order holds.
+  The Staten Island Railway is left out: it is a separate railway with stations
+  kilometres apart, and it outruns the whole list without being comparable to any
+  of it.</p>
+</section>
+
+<section class="checker-section" aria-labelledby="checker-heading">
+  <div class="section-head">
+    <h2 id="checker-heading">Now check yours</h2>
+    <p>Pick a line and two stations. Waiting and riding are reported separately, and
+    deliberately: percentiles do not add, so quoting one combined number would overstate
+    every result. The ride is what the train does. The wait is what the timetable does
+    to you.</p>
+  </div>
+
+  <div class="bullets" id="bullets" role="group" aria-label="Choose a line"></div>
+
+  <div class="picker">
+    <label class="field">
+      <span>From</span>
+      <select id="from-station" disabled></select>
+    </label>
+    <label class="field">
+      <span>To</span>
+      <select id="to-station" disabled></select>
+    </label>
+    <label class="field">
+      <span>When</span>
+      <select id="block">
+        <option value="early">Before 7am</option>
+        <option value="am" selected>Morning rush, 7–10</option>
+        <option value="midday">Midday, 10–4</option>
+        <option value="pm">Evening rush, 4–7</option>
+        <option value="evening">After 7pm</option>
+      </select>
+    </label>
+  </div>
+
+  <div class="answer" id="answer" aria-live="polite">
+    <p class="answer-empty">Choose a line to begin.</p>
+  </div>
+</section>
+
+<section class="mine" aria-labelledby="mine-heading">
+  <div class="section-head">
+    <h2 id="mine-heading">And then there is mine</h2>
+    <p>I take the D from 34 St-Herald Sq to Fordham Rd. Fourteen stops, 15.5 km. Below is
+    every D train on one day, drawn so that time runs left to right and stations run
+    bottom to top. Each line is one train, so its slope is its speed — and a line gone
+    flat is a train that has stopped.</p>
+  </div>
+</section>
+
+<section class="plate-wrap" aria-labelledby="plate-heading">
+  <h2 class="sr-only" id="plate-heading">Time-space diagram</h2>
+
+  <div class="plate">
+    <canvas id="stringline" role="img" aria-describedby="plate-alt"></canvas>
+    <p class="sr-only" id="plate-alt">A time-space diagram of every D train on the selected day. Time is the horizontal axis; the 41 stations from Coney Island to Norwood-205 St are the vertical axis. Each diagonal line is one train.</p>
+
+    <div class="readout" id="plate-readout" hidden>
+      <span class="readout-train"></span>
+      <span class="readout-detail"></span>
+    </div>
+  </div>
+
+  <div class="titleblock">
+    <div class="tb-row tb-title">
+      <span class="tb-key">Drawing</span>
+      <span class="tb-val">D line — time / distance</span>
+    </div>
+    <div class="tb-row">
+      <span class="tb-key">Day</span>
+      <span class="tb-val" id="tb-day">—</span>
+    </div>
+    <div class="tb-row">
+      <span class="tb-key">Trains</span>
+      <span class="tb-val" id="tb-trains">—</span>
+    </div>
+    <div class="tb-row">
+      <span class="tb-key">Hours</span>
+      <span class="tb-val" id="tb-hours">—</span>
+    </div>
+    <div class="tb-row">
+      <span class="tb-key">Scale</span>
+      <span class="tb-val" id="tb-scale">—</span>
+    </div>
+    <div class="tb-row">
+      <span class="tb-key">Source</span>
+      <span class="tb-val">subwaydata.nyc</span>
+    </div>
+  </div>
+
+  <div class="plate-controls">
+    <div class="control-group" role="group" aria-label="Choose a day">
+      <button type="button" class="chip" data-pick="worst">Worst morning</button>
+      <button type="button" class="chip" data-pick="typical">Typical day</button>
+    </div>
+    <div class="control-group" role="group" aria-label="Choose the hours shown">
+      <button type="button" class="chip" data-window="morning">Morning</button>
+      <button type="button" class="chip" data-window="afternoon">Afternoon</button>
+      <button type="button" class="chip" data-window="all">Whole day</button>
+    </div>
+    <label class="toggle">
+      <input type="checkbox" id="overlay-toggle">
+      <span>Show the other services sharing this track</span>
+    </label>
+  </div>
+
+  <figure class="daystrip-figure">
+    <figcaption>
+      Every weekday of <span id="strip-term">the term</span>. Height is how bad that day
+      got at its worst — the 90th percentile journey — measured up from the calmest day
+      of the term, since a zero baseline flattens them all into one line. Grey bars ran
+      reduced service. Click any day to draw it.
+    </figcaption>
+    <div class="daystrip" id="daystrip" role="group" aria-label="Select a day"></div>
+  </figure>
+</section>
+
+<section class="question" aria-labelledby="question-heading">
+  <div class="question-grid">
+    <div class="question-head">
+      <h2 id="question-heading">So what time do I have to leave?</h2>
+      <p>Here, and only here, waiting and riding are fused — because for one fixed pair of
+      stations I can walk the whole thing minute by minute instead of adding percentiles
+      together. Arrive at <strong>34 St-Herald Sq</strong> at a given minute, catch
+      whatever comes next, and see when it puts you at <strong>Fordham Rd</strong>.</p>
+    </div>
+    <p class="verdict" id="verdict">Hover the chart to read a minute.</p>
+  </div>
+
+  <div class="bands">
+    <canvas id="bandchart" role="img" aria-describedby="band-alt"></canvas>
+    <p class="sr-only" id="band-alt">Percentile bands of total journey time from 34 St-Herald Sq to Fordham Rd, by the minute you reach the platform. Includes waiting time.</p>
+  </div>
+
+  <div class="legend" aria-hidden="true">
+    <span class="key"><i class="sw sw-outer"></i>1 in 10 days worse than this</span>
+    <span class="key"><i class="sw sw-inner"></i>half of all days</span>
+    <span class="key"><i class="sw sw-median"></i>median</span>
+    <span class="key"><i class="sw sw-day"></i>the day drawn above</span>
+  </div>
+
+  <div class="terms" id="terms" role="group" aria-label="Choose a term"></div>
+</section>
+
+<footer class="colophon">
+  <div class="col">
+    <h3>What this is built from</h3>
+    <p id="coverage">—</p>
+  </div>
+  <div class="col">
+    <h3>Where it comes from</h3>
+    <p>The MTA's realtime feeds only look forward: a trip update lists the stops a train
+    has yet to reach and drops each one as it passes, so a finished trip leaves no trace.
+    There is no official archive of where trains actually were. These movements were
+    recorded as they happened by
+    <a href="https://subwaydata.nyc/">subwaydata.nyc</a>, continuously since 2021.
+    Station names and route order come from the MTA's published schedule.</p>
+  </div>
+  <div class="col">
+    <h3>What it is not</h3>
+    <p>A reconstruction, not an official record. Weekdays only. Days with sharply reduced
+    service are detected by trip count and left out of the bands, though you can still
+    draw them. Minutes are local wall-clock, so an 8:15 train is an 8:15 train on both
+    sides of the November clock change.</p>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

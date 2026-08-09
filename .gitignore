@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+logs/
+
+# Raw downloads from subwaydata.nyc. Bulky, and re-fetchable at any time.
+/data/
+
+# The schedule bundle, re-fetched by fetch_static.py.
+/static/
+
+# site/data is deliberately NOT ignored — it is what the page reads.

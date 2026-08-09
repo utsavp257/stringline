@@ -1,0 +1,130 @@
+{
+ "generated_at": "2026-08-09T00:41:09-04:00",
+ "axis": {
+  "first_minute": 360,
+  "last_minute": 1435,
+  "top_minutes": 90
+ },
+ "data_through": "2025-12-31",
+ "data_from": "2021-09-01",
+ "segment": {
+  "from": "34 St-Herald Sq",
+  "to": "Fordham Rd",
+  "km": 15.5,
+  "stops": 14
+ },
+ "source": {
+  "observed": "subwaydata.nyc",
+  "schedule": "Metropolitan Transportation Authority"
+ },
+ "periods": [
+  {
+   "id": "fall-2021",
+   "label": "Fall 2021",
+   "note": "September through December",
+   "n_days": 88,
+   "n_days_reduced": 6,
+   "n_runs": 10623,
+   "n_runs_rejected": 0,
+   "first": "2021-09-01",
+   "last": "2021-12-31",
+   "overall": {
+    "p10": 33,
+    "p25": 36,
+    "p50": 39,
+    "p75": 44,
+    "p90": 50
+   }
+  },
+  {
+   "id": "fall-2022",
+   "label": "Fall 2022",
+   "note": "September through December",
+   "n_days": 87,
+   "n_days_reduced": 2,
+   "n_runs": 11056,
+   "n_runs_rejected": 0,
+   "first": "2022-09-01",
+   "last": "2022-12-30",
+   "overall": {
+    "p10": 34,
+    "p25": 36,
+    "p50": 40,
+    "p75": 44,
+    "p90": 50
+   }
+  },
+  {
+   "id": "fall-2023",
+   "label": "Fall 2023",
+   "note": "September through December",
+   "n_days": 85,
+   "n_days_reduced": 2,
+   "n_runs": 11161,
+   "n_runs_rejected": 154,
+   "first": "2023-09-01",
+   "last": "2023-12-29",
+   "overall": {
+    "p10": 33,
+    "p25": 36,
+    "p50": 39,
+    "p75": 44,
+    "p90": 49
+   }
+  },
+  {
+   "id": "fall-2024",
+   "label": "Fall 2024",
+   "note": "September through December",
+   "n_days": 87,
+   "n_days_reduced": 5,
+   "n_runs": 11641,
+   "n_runs_rejected": 148,
+   "first": "2024-09-02",
+   "last": "2024-12-31",
+   "overall": {
+    "p10": 34,
+    "p25": 36,
+    "p50": 40,
+    "p75": 44,
+    "p90": 50
+   }
+  },
+  {
+   "id": "fall-2025",
+   "label": "Fall 2025",
+   "note": "September through December",
+   "n_days": 88,
+   "n_days_reduced": 3,
+   "n_runs": 12010,
+   "n_runs_rejected": 142,
+   "first": "2025-09-01",
+   "last": "2025-12-31",
+   "overall": {
+    "p10": 34,
+    "p25": 36,
+    "p50": 39,
+    "p75": 43,
+    "p90": 48
+   }
+  },
+  {
+   "id": "all",
+   "label": "All terms",
+   "note": "every September-December on record",
+   "n_days": 435,
+   "n_days_reduced": 24,
+   "n_runs": 56491,
+   "n_runs_rejected": 444,
+   "first": "2021-09-01",
+   "last": "2025-12-31",
+   "overall": {
+    "p10": 33,
+    "p25": 36,
+    "p50": 39,
+    "p75": 44,
+    "p90": 49
+   }
+  }
+ ]
+}

@@ -1,0 +1,61 @@
+name: Add yesterday
+
+# subwaydata.nyc publishes a day at a time, a day or so behind. This picks up
+# whatever is new, rebuilds the commute aggregates and commits. It is cheap:
+# one file, a few seconds.
+#
+# It deliberately does not rebuild the system-wide speed statistics. Those need
+# every day in the corpus re-read, which is a 600 MB download, and doing that
+# nightly would be rude to a service that gives its data away. See rebuild.yml.
+
+on:
+  schedule:
+    - cron: "20 11 * * *"   # 11:20 UTC, after the previous day is published
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: data-update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Refresh the published schedule
+        run: python data_prep/fetch_static.py
+
+      - name: Fetch any days we do not have yet
+        run: |
+          # A fortnight back each run, so a few failed nights heal themselves.
+          FIRST=$(date -u -d '14 days ago' +%Y-%m-%d)
+          LAST=$(date -u -d 'yesterday' +%Y-%m-%d)
+          python data_prep/build_days.py "$FIRST" "$LAST"
+
+      - name: Rebuild the aggregates
+        run: |
+          python data_prep/route.py
+          python data_prep/build_periods.py
+
+      - name: Commit if anything changed
+        run: |
+          git config user.name "stringline"
+          git config user.email "noreply@users.noreply.github.com"
+          git add site/data
+          if git diff --cached --quiet; then
+            echo "nothing new to publish"
+          else
+            git commit -m "Data through $(date -u -d 'yesterday' +%Y-%m-%d)"
+            git push
+          fi

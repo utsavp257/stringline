@@ -1,0 +1,71 @@
+name: Rebuild system statistics
+
+# The whole-network speed ranking and the per-pair ride times are computed from
+# every day in the corpus at once, which means re-downloading all of it. That is
+# a few hundred megabytes from someone else's server, so it runs monthly rather
+# than nightly, and can be kicked off by hand when a term ends.
+
+on:
+  schedule:
+    - cron: "40 3 1 * *"   # 03:40 UTC on the first of the month
+  workflow_dispatch:
+    inputs:
+      ranges:
+        description: "Date ranges, space separated, as FIRST:LAST"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+concurrency:
+  group: data-update
+  cancel-in-progress: false
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - run: python data_prep/fetch_static.py
+
+      - name: Work out which autumns to include
+        id: ranges
+        run: |
+          if [ -n "${{ inputs.ranges }}" ]; then
+            echo "value=${{ inputs.ranges }}" >> "$GITHUB_OUTPUT"
+          else
+            # Every September-December from 2021 to the current year.
+            YEAR=$(date -u +%Y)
+            SPANS=""
+            for y in $(seq 2021 "$YEAR"); do
+              SPANS="$SPANS $y-09-01:$y-12-31"
+            done
+            echo "value=$SPANS" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Rebuild
+        run: |
+          python data_prep/network.py
+          python data_prep/build_stats.py ${{ steps.ranges.outputs.value }}
+
+      - name: Commit if anything changed
+        run: |
+          git config user.name "stringline"
+          git config user.email "noreply@users.noreply.github.com"
+          git add site/data
+          if git diff --cached --quiet; then
+            echo "statistics unchanged"
+          else
+            git commit -m "Rebuild system statistics"
+            git push
+          fi
