@@ -9,11 +9,15 @@ const NORTHBOUND = 0;
 /* A stringline is only readable when an hour of time is worth roughly as much
    width as a few kilometres are worth height. Across a whole 19-hour day every
    train stands nearly vertical and the slope - the entire point - is lost. So
-   the plate shows a window, and defaults to the one the commute lives in. */
+   the plate shows a window, and defaults to the one the commute lives in.
+
+   A phone has about half the width, so it gets a shorter span rather than the
+   same hours squeezed: five hours around the rush instead of eight. Whole day
+   is left alone, since asking for the whole day is asking to see all of it. */
 const WINDOWS = {
-  morning:   { label: "Morning",   from: 300,  to: 780 },   // 05:00 – 13:00
-  afternoon: { label: "Afternoon", from: 720,  to: 1200 },  // 12:00 – 20:00
-  all:       { label: "Whole day", from: 300,  to: 1560 },  // 05:00 – 26:00
+  morning:   { label: "Morning",   from: 300,  to: 780,  narrow: [360, 660] },   // 05:00–13:00, 06:00–11:00
+  afternoon: { label: "Afternoon", from: 720,  to: 1200, narrow: [900, 1200] },  // 12:00–20:00, 15:00–20:00
+  all:       { label: "Whole day", from: 300,  to: 1560 },                       // 05:00–26:00
 };
 
 const CSS = getComputedStyle(document.documentElement);
@@ -176,12 +180,13 @@ function plateGeometry(w, h) {
   const plotW = w - pad.left - pad.right;
   const plotH = h - pad.top - pad.bottom;
   const win = WINDOWS[state.window];
-  const span = win.to - win.from;
+  const [from, to] = narrow && win.narrow ? win.narrow : [win.from, win.to];
+  const span = to - from;
   return {
-    pad, maxKm, plotW, plotH, narrow, from: win.from, to: win.to,
-    x: (m) => pad.left + ((m - win.from) / span) * plotW,
+    pad, maxKm, plotW, plotH, narrow, from, to,
+    x: (m) => pad.left + ((m - from) / span) * plotW,
     y: (km) => pad.top + plotH - (km / maxKm) * plotH,
-    mAt: (px) => win.from + ((px - pad.left) / plotW) * span,
+    mAt: (px) => from + ((px - pad.left) / plotW) * span,
     kmAt: (py) => ((pad.top + plotH - py) / plotH) * maxKm,
   };
 }

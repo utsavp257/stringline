@@ -423,23 +423,13 @@ h1 em,
   padding: 0.75rem;
 }
 
-/* Hidden by default; the narrow rules below turn it on, where the plate
-   actually scrolls. Declared here so the media query wins on source order. */
-.plate-hint {
-  display: none;
-  margin: 0.6rem 0 0;
-  font-family: var(--mono);
-  font-size: 0.6875rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-}
-
 .plate canvas {
   display: block;
   width: 100%;
   height: clamp(420px, 62vh, 760px);
-  touch-action: none;
+  /* Panning must reach the scroll container. touch-action: none here swallows
+     the gesture and strands a phone at the left edge of the drawing. */
+  touch-action: pan-x pan-y;
 }
 
 .readout {
@@ -630,7 +620,7 @@ h1 em,
   display: block;
   width: 100%;
   height: clamp(260px, 38vh, 420px);
-  touch-action: none;
+  touch-action: pan-x pan-y;
 }
 
 .legend {
@@ -716,19 +706,11 @@ h1 em,
   .rank-bar   { grid-area: bar; align-self: center; }
   .rank-note  { grid-area: note; }
 
-  /* A stringline needs width to stay readable: squeezed into a phone the
-     trains stand vertical and the slope stops meaning anything. So the plate
-     keeps a usable width and scrolls sideways instead of being crushed. */
-  .plate {
-    overflow-x: auto;
-    overscroll-behavior-x: contain;
-  }
-  .plate canvas { min-width: 640px; height: clamp(400px, 62vh, 560px); }
-
-  .bands { overflow-x: auto; overscroll-behavior-x: contain; }
-  .bands canvas { min-width: 560px; }
-
-  .plate-hint { display: block; }
+  /* The plate fits the screen rather than scrolling. Scrolling it sideways
+     carried the station labels off the left edge, which costs more than the
+     extra width buys. The narrow window in app.js keeps the slope readable
+     instead. */
+  .plate canvas { height: clamp(400px, 62vh, 560px); }
 }
 
 @media (prefers-reduced-motion: reduce) {
