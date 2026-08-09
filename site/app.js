@@ -23,8 +23,12 @@ const WINDOWS = {
 /* How far a full end-to-end run must travel across the screen before the
    drawing is worth showing. Below this the trains stand near vertical, slope
    stops reading as speed, and the chart is decoration. Better to say so than
-   to print something misleading. */
-const MIN_RUN_ADVANCE = 100;
+   to print something misleading.
+
+   Set so a full day still fits a desktop, where it is dense but readable, and
+   is refused on a phone, where it is not. On a typical day that puts desktop
+   whole-day near 88px of travel and the same view on a phone near 24. */
+const MIN_RUN_ADVANCE = 60;
 
 /* Station names are long and a phone has no room for a column of them. These
    are short enough to fit and still be recognised. */
