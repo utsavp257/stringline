@@ -1,11 +1,11 @@
 {
- "generated_at": "2026-08-27T17:03:46-04:00",
+ "generated_at": "2026-08-28T17:27:25-04:00",
  "axis": {
   "first_minute": 360,
   "last_minute": 1435,
   "top_minutes": 90
  },
- "data_through": "2026-08-26",
+ "data_through": "2026-08-27",
  "data_from": "2021-09-01",
  "segment": {
   "from": "34 St-Herald Sq",
@@ -112,12 +112,12 @@
    "id": "all",
    "label": "All terms",
    "note": "every September-December on record",
-   "n_days": 458,
+   "n_days": 459,
    "n_days_reduced": 24,
-   "n_runs": 59599,
-   "n_runs_rejected": 498,
+   "n_runs": 59725,
+   "n_runs_rejected": 501,
    "first": "2021-09-01",
-   "last": "2026-08-26",
+   "last": "2026-08-27",
    "overall": {
     "p10": 33,
     "p25": 36,
