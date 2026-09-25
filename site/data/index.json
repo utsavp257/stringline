@@ -1,11 +1,11 @@
 {
- "generated_at": "2026-09-24T11:50:52-04:00",
+ "generated_at": "2026-09-25T11:51:21-04:00",
  "axis": {
   "first_minute": 360,
   "last_minute": 1435,
   "top_minutes": 105
  },
- "data_through": "2026-09-23",
+ "data_through": "2026-09-24",
  "data_from": "2021-09-01",
  "segment": {
   "from": "34 St-Herald Sq",
@@ -112,12 +112,12 @@
    "id": "fall-2026",
    "label": "Fall 2026",
    "note": "September through December",
-   "n_days": 17,
+   "n_days": 18,
    "n_days_reduced": 2,
-   "n_runs": 2212,
-   "n_runs_rejected": 30,
+   "n_runs": 2353,
+   "n_runs_rejected": 31,
    "first": "2026-09-01",
-   "last": "2026-09-23",
+   "last": "2026-09-24",
    "overall": {
     "p10": 33,
     "p25": 36,
@@ -130,12 +130,12 @@
    "id": "all",
    "label": "All terms",
    "note": "every September-December on record",
-   "n_days": 478,
+   "n_days": 479,
    "n_days_reduced": 27,
-   "n_runs": 62176,
-   "n_runs_rejected": 543,
+   "n_runs": 62317,
+   "n_runs_rejected": 544,
    "first": "2021-09-01",
-   "last": "2026-09-23",
+   "last": "2026-09-24",
    "overall": {
     "p10": 33,
     "p25": 36,
