@@ -1,5 +1,5 @@
 {
- "days_used": 436,
+ "days_used": 457,
  "first": "2021-09-01",
  "last": "2026-12-31",
  "blocks": [
@@ -38,7 +38,7 @@
    "kmh": 21.0,
    "kmh_slow_tenth": 18.5,
    "end_to_end_minutes": 90,
-   "runs": 75532
+   "runs": 78980
   },
   {
    "route": "6",
@@ -48,7 +48,7 @@
    "kmh": 22.5,
    "kmh_slow_tenth": 20.0,
    "end_to_end_minutes": 62,
-   "runs": 195341
+   "runs": 205022
   },
   {
    "route": "R",
@@ -58,7 +58,7 @@
    "kmh": 22.5,
    "kmh_slow_tenth": 20.5,
    "end_to_end_minutes": 89,
-   "runs": 121751
+   "runs": 127811
   },
   {
    "route": "2",
@@ -68,7 +68,7 @@
    "kmh": 23.0,
    "kmh_slow_tenth": 21.0,
    "end_to_end_minutes": 103,
-   "runs": 143917
+   "runs": 150836
   },
   {
    "route": "J",
@@ -78,7 +78,7 @@
    "kmh": 23.0,
    "kmh_slow_tenth": 21.0,
    "end_to_end_minutes": 54,
-   "runs": 123034
+   "runs": 128754
   },
   {
    "route": "M",
@@ -88,7 +88,7 @@
    "kmh": 23.5,
    "kmh_slow_tenth": 20.5,
    "end_to_end_minutes": 72,
-   "runs": 119469
+   "runs": 125453
   },
   {
    "route": "1",
@@ -98,7 +98,7 @@
    "kmh": 24.0,
    "kmh_slow_tenth": 22.0,
    "end_to_end_minutes": 58,
-   "runs": 198239
+   "runs": 208087
   },
   {
    "route": "3",
@@ -108,7 +108,7 @@
    "kmh": 24.0,
    "kmh_slow_tenth": 22.0,
    "end_to_end_minutes": 70,
-   "runs": 121475
+   "runs": 127460
   },
   {
    "route": "Z",
@@ -118,7 +118,7 @@
    "kmh": 24.0,
    "kmh_slow_tenth": 22.0,
    "end_to_end_minutes": 52,
-   "runs": 4875
+   "runs": 5107
   },
   {
    "route": "7",
@@ -128,7 +128,7 @@
    "kmh": 24.5,
    "kmh_slow_tenth": 21.5,
    "end_to_end_minutes": 39,
-   "runs": 219962
+   "runs": 230760
   },
   {
    "route": "C",
@@ -138,7 +138,7 @@
    "kmh": 25.0,
    "kmh_slow_tenth": 23.0,
    "end_to_end_minutes": 69,
-   "runs": 90349
+   "runs": 94628
   },
   {
    "route": "D",
@@ -148,7 +148,7 @@
    "kmh": 25.0,
    "kmh_slow_tenth": 22.5,
    "end_to_end_minutes": 94,
-   "runs": 151110
+   "runs": 159028
   },
   {
    "route": "L",
@@ -158,7 +158,7 @@
    "kmh": 25.0,
    "kmh_slow_tenth": 21.5,
    "end_to_end_minutes": 38,
-   "runs": 192907
+   "runs": 204104
   },
   {
    "route": "Q",
@@ -168,7 +168,7 @@
    "kmh": 25.0,
    "kmh_slow_tenth": 22.0,
    "end_to_end_minutes": 67,
-   "runs": 139247
+   "runs": 145568
   },
   {
    "route": "N",
@@ -178,7 +178,7 @@
    "kmh": 25.5,
    "kmh_slow_tenth": 21.5,
    "end_to_end_minutes": 78,
-   "runs": 120496
+   "runs": 126373
   },
   {
    "route": "B",
@@ -188,7 +188,7 @@
    "kmh": 26.0,
    "kmh_slow_tenth": 23.0,
    "end_to_end_minutes": 86,
-   "runs": 84570
+   "runs": 88597
   },
   {
    "route": "F",
@@ -198,7 +198,7 @@
    "kmh": 26.0,
    "kmh_slow_tenth": 22.5,
    "end_to_end_minutes": 97,
-   "runs": 164301
+   "runs": 171919
   },
   {
    "route": "5",
@@ -208,7 +208,7 @@
    "kmh": 26.5,
    "kmh_slow_tenth": 23.0,
    "end_to_end_minutes": 90,
-   "runs": 137160
+   "runs": 143858
   },
   {
    "route": "G",
@@ -218,7 +218,7 @@
    "kmh": 26.5,
    "kmh_slow_tenth": 23.5,
    "end_to_end_minutes": 36,
-   "runs": 131909
+   "runs": 138023
   },
   {
    "route": "4",
@@ -228,7 +228,7 @@
    "kmh": 27.0,
    "kmh_slow_tenth": 22.0,
    "end_to_end_minutes": 80,
-   "runs": 180352
+   "runs": 188481
   },
   {
    "route": "E",
@@ -238,7 +238,7 @@
    "kmh": 29.0,
    "kmh_slow_tenth": 22.5,
    "end_to_end_minutes": 51,
-   "runs": 172504
+   "runs": 180549
   },
   {
    "route": "A",
@@ -248,7 +248,7 @@
    "kmh": 29.5,
    "kmh_slow_tenth": 25.0,
    "end_to_end_minutes": 102,
-   "runs": 151297
+   "runs": 158233
   }
  ]
 }
