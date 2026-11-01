@@ -116,7 +116,7 @@
   "stations": 32,
   "terminals": [
    "World Trade Center",
-   "Jamaica Center-Parsons/Archer"
+   "Jamaica Center-York College"
   ]
  },
  "F": {
@@ -146,7 +146,7 @@
   "stations": 30,
   "terminals": [
    "Broad St",
-   "Jamaica Center-Parsons/Archer"
+   "Jamaica Center-York College"
   ]
  },
  "L": {
@@ -216,7 +216,7 @@
   "stations": 21,
   "terminals": [
    "Broad St",
-   "Jamaica Center-Parsons/Archer"
+   "Jamaica Center-York College"
   ]
  }
 }
